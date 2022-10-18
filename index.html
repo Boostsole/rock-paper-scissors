@@ -1,6 +1,7 @@
 <script>
+    let choice = ['rock', 'paper', 'scissors'];
 
-
+// computer choice being randomize 
 const getComputerChoice = () => {
     let randomNumber = Math.floor(Math.random() * 3);
     switch(randomNumber){
@@ -13,47 +14,61 @@ const getComputerChoice = () => {
     }
     
 };
-console.log(getComputerChoice());
 
+function playerChoice() {
+    let input = prompt('Type rock, paper or scissors');
+     while (input === null) {
+        input = prompt('Type rock, paper or scissors');
+  }
+    input = input.toLowerCase();
+    if (input === 'rock'|| input === 'paper' || input === 'scissors') {
+     return input;
+  }  else {
+   } console.log('Error try again!');
+  
+     
+};
 
-function playRound(playerSelection, computerSelection) {
+// function that will compare the two choices played and
+ //will return if the person won, lost, or tied.
+function checkWinner(playerSelection, computerSelection) {
     if(playerSelection ===  computerSelection){
         return 'Is a tie!';
     } 
-    if ( playerSelection === "rock" && computerSelection === 'scissors'){
-        return 'player has won!'
-    } 
-    else {
-         return 'computer has won'
-    }
-    if ( playerSelection === "scissors" && computerSelection === 'paper'){
-        return 'player has won!'
-    } 
-    else {
-         return 'computer has won'
-    }
-    if ( playerSelection === "paper" && computerSelection === 'rock'){
-        return 'player has won!'
-    } 
-    else {
-         return 'computer has won'
-    }
-
-};
-
-
-
-function game (){
-const playerSelection = "paper";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+    else if(
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') || 
+    (playerSelection === 'scissors' && computerSelection === 'paper')
     
+) {
+      return 'Player has Won!';
+}   else {
+       return 'Computer has won!';
+}
+
 };
-game();
+
+
+
+function game () {
+
+const playerSelection = playerChoice();
+const computerSelection = getComputerChoice();
+console.log('You threw: ' + playerSelection);
+console.log('Computer threw: ' + computerSelection);
+
+
+console.log(checkWinner(playerSelection, computerSelection));
+
+};
+for (let i = 0; i < 5; i++) 
+    game();
+
+
+ 
+//game();
 
 
 </script>
-
-
 
 
